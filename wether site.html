@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"content="width=device-width,initial-scale=1.0">
+    <title>Weather APP</title>
+    <link rel="stylesheet"href="style.css">
+</head>
+<body>
+    <form action="/getweather"method="post">
+    </form>
+    <div class="card">
+        <div class="search">
+            <input type="text"placeholder="enter city name" class="input-box";
+            spellcheck-"false">
+            <button aria-label="Search"><img src="/search2.png" alt="Search"></button>
+        </div>
+        <div class="weather">
+            <img src="/weather9.png" alt="weatherimage"/>
+            <h1 class="temp">24°c</h1>
+            <h2 class="city">delhi</h2>
+            <div class="details">
+            <div class="col">
+            <img src="/humandity.png" alt="Humandity Image">
+            <div>
+               <p class="humandity">50%</p>
+               <p>humandity</p>
+         </div>
+        </div>
+        <div class="col">
+            <img src="/wind4.png" alt="Wind-Image">
+            <div>
+                <p class="wind">15km/h</p>
+                <p>wind speed</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script>
+        const apiKey="43d20efc42af1c037bb6694dbd49a8b4";
+        const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&p=delhi";
+
+        const search=document.querySelector(".search input");
+        searchBox=documnet.querySelector(".search Button");
+        async function checkWeather(city){
+            const responce=await fetch(apiUrl+city+ '&appid=${apiKey}');
+            var data=await response.json();
+
+            console.log(data);
+
+            document.querySelector(".city").innerHTML= data.name;
+            document.querySelector(".temp").innerHTML= Math.round(data.main.temp)+ "°C";
+            document.querySelector(".humandity").innerHTML=data.main.humandity+"%";
+            document.querySelector(".wind").innerHTML=data.wind.speed+"km/h";
+        }
+        searchBtn.addEventListener("click",()=>
+        checkWeather(search.value));
+    
+    
+       
+    </script>
+</body>
+</html>
